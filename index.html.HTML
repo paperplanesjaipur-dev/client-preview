@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Disha &amp; Sambhav · Wedding Invitation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<!-- class="guides" shows pink boxes around every image. DELETE it when the site is finished. -->
+<body>
+
+  <!-- The 720 px wide website. All pages go inside, one under the other. Never change this part. -->
+  <div class="phone" id="phone">
+
+
+    <!-- ================= PAGE 1 START ================= -->
+    <section class="page" id="page1">
+
+      <!-- ADD PAGE 1 BACKGROUND IMAGE (full page, size 720 x 1280) -->
+      <img class="bg" src="images/page1bg.png" alt="Page 1 background">
+
+      <!-- ADD FLOWER BRANCH IMAGE (top left, size 603 x 277) -->
+      <img class="p1-flowers" src="images/flowerbranch3.png" alt="Flower branch">
+
+      <!-- FLIP CARD: shows Ganesha first, flips to the logo on hover (computer) or tap (phone) -->
+      <div class="p1-card" id="p1Card" role="button" tabindex="0" aria-label="Flip between Ganesha and the D and S logo">
+        <div class="p1-inner">
+
+          <!-- ADD GANESHA IMAGE (front side, size 299 x 299, include the glowing rays) -->
+          <img class="p1-face p1-front" src="images/ganeshji.png" alt="Lord Ganesha">
+
+          <!-- ADD D&S LOGO IMAGE (back side, size 299 x 299, logo centered in the image) -->
+          <img class="p1-face p1-back" src="images/logo.png" alt="D and S logo">
+
+        </div>
+      </div>
+
+    </section>
+    <!-- ================= PAGE 1 END ================= -->
+
+
+    <!-- ================= PASTE PAGE 2 HTML HERE ================= -->
+
+<!-- ================= PAGE 2 START ================= -->
+<section class="page" id="page2">
+
+  <!-- ADD PAGE 2 BACKGROUND IMAGE (full page, size 720 x 1280) -->
+  <img loading="lazy" decoding="async" class="bg" src="images/page2bg.png" alt="Page 2 background">
+
+  
+  <!-- TEXT 1 : invitation line. top = distance from the top of the page (centre of the text) -->
+  <div class="text p2-caps t1" style="top:262px">
+    <p>We are delighted to invite you to grace us<br>with your esteemed<br>presence as we celebrate the wedding of<br>our beloved daughter</p>
+  </div>
+
+  <!-- TEXT 2 : bride name -->
+  <div class="text p2-name t2" style="top:384px">
+    <h2>Disha Chandan</h2>
+  </div>
+
+  <!-- TEXT 3 : bride family -->
+  <div class="text p2-sc t3" style="top:484px">
+    <p>Grand Daughter of<br>Late Smt. Shantidevi &amp; Late Shri Jawaharmalji Chandan<br>Daughter of<br>Smt. Sushila &amp; Shri Pravin Chandan</p>
+  </div>
+
+  <!-- TEXT 4 : the word WITH -->
+  <div class="text p2-caps t4" style="top:585px">
+    <p>With</p>
+  </div>
+
+  <!-- TEXT 5 : groom name -->
+  <div class="text p2-name t5" style="top:651px">
+    <h2>Sambhavji Lunawat</h2>
+  </div>
+
+  <!-- TEXT 6 : groom family -->
+  <div class="text p2-sc t6" style="top:769px">
+    <p>Grand Son of<br>Late Smt. Antardeviji &amp; Late Shri Sohanlalji Lunawat<br>Son of<br>Smt. Snehalataji &amp; Shri Rajkumarji Lunawat</p>
+  </div>
+
+</section>
+<!-- ================= PAGE 2 END ================= -->
+
+
+
+  <!-- ================= PAGE 3 START ================= -->
+    <!-- Page 3 slides up over the bottom of page 2, so the roof and tree join page 2 as ONE picture. -->
+    <section class="page" id="page3">
+
+      <!-- HAVELI VIEW: everything inside this box zooms when the window or the door is used -->
+      <div class="p3-world" id="p3World">
+
+        <!-- ADD BACKGROUND IMAGE (sky and wall behind the haveli, size 720 x 1280) -->
+        <img loading="lazy" decoding="async" class="bg" src="images/page3bg.png" alt="Page 3 background">
+
+        <!-- ADD HAVELI IMAGE (roof, trees, plants and windows, transparent PNG, size 720 x 1280.
+             Do NOT include the doors, the musicians or the border in this image.
+             Leave the doorway empty, so the doors can open.) -->
+        <img loading="lazy" decoding="async" class="p3-haveli" src="images/haveli.png" alt="Haveli">
+
+        <!-- DOOR: two leaves that swing open. Click the door or the door tag. -->
+        <div class="p3-door" id="p3Door">
+          <div class="p3-leaf p3-left">
+            <!-- ADD LEFT DOOR IMAGE (transparent PNG) -->
+            <img loading="lazy" decoding="async" src="images/door1.png" alt="Left door">
+          </div>
+          <div class="p3-leaf p3-right">
+            <!-- ADD RIGHT DOOR IMAGE (transparent PNG) -->
+            <img loading="lazy" decoding="async" src="images/door2.png" alt="Right door">
+          </div>
+        </div>
+
+        <!-- ADD BORDER IMAGE (red medallions along the bottom, 720 px wide) -->
+        <img loading="lazy" decoding="async" class="p3-border" src="images/3border.png" alt="Border">
+
+        <!-- ADD MUSICIANS IMAGE (transparent PNG) -->
+        <img loading="lazy" decoding="async" class="p3-musicians" src="images/musicians.png" alt="Musicians">
+
+        <!-- TEXT 1 (shows first, then swaps with TEXT 2 every 3 seconds) -->
+        <div class="p3-msg">
+          <p class="p3-a" style="top:-53px">9<sup>th</sup> – 12<sup>th</sup></p>
+          <p class="p3-b" style="top:8.5px">December</p>
+          <p class="p3-c" style="top:48px">2026</p>
+        </div>
+
+        <!-- TEXT 2 -->
+        <div class="p3-msg">
+          <p class="p3-script" style="top:-80px">at</p>
+          <p class="p3-b" style="top:-32px">Fairmont</p>
+          <p class="p3-script p3-amp" style="top:8px">&amp;</p>
+          <p class="p3-b" style="top:43px">Taj Amer</p>
+          <p class="p3-d" style="top:84px">Jaipur</p>
+        </div>
+
+        <!-- TAG 1 : sits on the centre window. Click = zoom into Welcome Lunch -->
+        <button class="p3-tag" id="p3ZoomTag" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/><path d="M10.5 7.5v6M7.5 10.5h6"/></svg>
+          <span>Zoom in</span>
+        </button>
+
+        <!-- TAG 2 : sits above the door. Click = the doors open and we go inside -->
+        <button class="p3-tag" id="p3DoorTag" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 21V10a7 7 0 0 1 14 0v11z"/><path d="M12 3v18"/><path d="M9.5 13v2M14.5 13v2"/></svg>
+          <span>Click on the door to explore more</span>
+        </button>
+
+      </div>
+
+      <!-- WELCOME LUNCH VIEW (appears when TAG 1 is clicked, click anywhere to go back) -->
+      <div class="p3-lunch" id="p3Lunch">
+
+        <!-- ADD WELCOME LUNCH IMAGE (the zoomed window, NO text on it, size 720 x 1280) -->
+        <img loading="lazy" decoding="async" class="bg" src="images/welcomelunch.png" alt="Welcome Lunch window">
+
+        <p class="p3-lt p3-l1">Welcome Lunch</p>
+        <p class="p3-lt p3-l2">9<sup>th</sup> December 2026</p>
+        <p class="p3-lt p3-l3">12 noon onwards</p>
+
+        <button class="p3-tag" id="p3OutTag" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/><path d="M7.5 10.5h6"/></svg>
+          <span>Zoom out</span>
+        </button>
+      </div>
+
+
+
+   
+      <!-- ================= PAGE 4 START ================= -->
+      <!-- Page 4 is NOT a scroll page. It stays hidden until the door opens, then grows out of the doorway. -->
+      <div class="p4" id="page4">
+
+        <!-- ADD PAGE 4 BACKGROUND VIDEO (MP4, size 384 x 683, NO text on the video).
+             poster = still picture shown while the video loads (size 720 x 1280, no text).
+             It repeats (loop). Delete the word  loop  if you want it to play only once. -->
+        <video class="p4-video" id="p4Video" data-src="videos/sajjankot.mp4" data-poster="images/page4-poster.png" muted loop playsinline preload="none"></video>
+
+        <!-- TEXT 1 : title. top = distance from the top of the page (centre of the text) -->
+        <div class="text p4-title t1" style="top:549px">
+          <h2>Shahi Manuhaar</h2>
+        </div>
+
+        <!-- TEXT 2 : place name -->
+        <div class="text p4-sub t2" style="top:592px">
+          <p>(Sajjan Kot)</p>
+        </div>
+
+        <!-- TEXT 3 : date -->
+        <div class="text p4-date t3" style="top:661px">
+          <p>9<sup>th</sup> December 2026</p>
+        </div>
+
+        <!-- TEXT 4 : time and venue (three lines) -->
+        <div class="text p4-lines t4" style="top:759px">
+          <p>7:30 PM onwards<br>Kundanvan,<br>Taj Amer Jaipur</p>
+        </div>
+
+      </div>
+      <!-- ================= PAGE 4 END ================= -->
+
+    </section>
+    <!-- ================= PAGE 3 END ================= -->
+
+
+    <!-- ================= PAGE 5 START : ARTISANS COURT ================= -->
+    <section class="page vpage" id="page5">
+
+      <!-- ADD PAGE 5 BACKGROUND VIDEO (MP4, 384 x 683, NO text on the video)
+           poster = still picture shown while the video loads (720 x 1280, no text) -->
+      <video class="pv" data-src="videos/page5.mp4" data-poster="images/page5-poster.png" muted loop playsinline preload="none"></video>
+
+      <!-- Every text: top = distance from the top of the page (centre of the text) -->
+      <div class="text v-title t1" style="top:549px"><h2>Artisans Court</h2></div>
+      <div class="text v-sub t2" style="top:593px"><p>(Haldi)</p></div>
+      <div class="text v-date t3" style="top:668px"><p class="day">Thursday</p><p>10<sup>th</sup> December 2026</p></div>
+      <div class="text v-info t4" style="top:745px"><p>11:30 AM onwards</p></div>
+      <div class="text v-info t5" style="top:813px"><p>Fairmont<br>Jaipur</p></div>
+
+    </section>
+    <!-- ================= PAGE 5 END ================= -->
+   <!-- ================= CURTAIN BETWEEN PAGE 5 AND PAGE 6 START ================= -->
+<div class="seam seam-curtain">
+  <div class="curtain-clip">
+    <img loading="lazy" decoding="async" src="images/bluecurtain.png" alt="Blue curtain">
+  </div>
+</div>
+<!-- ================= CURTAIN BETWEEN PAGE 5 AND PAGE 6 END ================= -->
+
+    <!-- ================= PAGE 6 START : SANGEET ================= -->
+    <section class="page vpage" id="page6">
+
+      <!-- ADD PAGE 6 BACKGROUND VIDEO (MP4, NO text on the video) -->
+      <video class="pv" data-src="videos/page6.mp4" data-poster="images/page6-poster.png" muted loop playsinline preload="none"></video>
+
+      <div class="text v-title gold t1" style="top:429px"><h2>Sangeet</h2></div>
+      <div class="text v-date t2" style="top:536px"><p class="day">Thursday</p><p>10<sup>th</sup> December 2026</p></div>
+      <div class="text v-info t3" style="top:664px"><p>7:00 PM onwards<br>J Oberoi<br>Jaipur</p></div>
+
+    </section>
+    <!-- ================= PAGE 6 END ================= -->
+
+ <!-- ================= BORDER BETWEEN PAGE 6 AND PAGE 7 START ================= -->
+    <!-- It sits exactly on the join of the two pages, so half of it is on page 5 and half on page 6.
+         It is not part of either page. -->
+    <div class="seam" id="seam67">
+      <!-- ADD BLUE BORDER IMAGE (your blueborder.png, transparent PNG, shown 720 px wide) -->
+      <img loading="lazy" decoding="async" src="images/borderbottom.png" alt="Border">
+    </div>
+    <!-- ================= BORDER BETWEEN PAGE 6 AND PAGE 7 END ================= -->
+    <!-- ================= PAGE 7 START : MAYRA & CARNIVAL ================= -->
+    <section class="page vpage" id="page7">
+
+      <!-- ADD PAGE 7 BACKGROUND VIDEO (MP4, NO text on the video) -->
+      <video class="pv" data-src="videos/page7.mp4" data-poster="images/page7-poster.png" muted loop playsinline preload="none"></video>
+
+      <div class="text v-title t1" style="top:301px"><h2>Mayra &amp; Carnival</h2></div>
+      <div class="text v-date t2" style="top:408px"><p class="day">Friday</p><p>11<sup>th</sup> December 2026</p></div>
+      <div class="text v-info t3" style="top:482px"><p>11:00 AM onwards</p></div>
+      <div class="text v-info t4" style="top:566px"><p>Banquet Hall,<br>Taj Amer<br>Jaipur</p></div>
+
+    </section>
+    <!-- ================= PAGE 7 END ================= -->
+<!-- ================= BORDER BETWEEN PAGE 7 AND PAGE 8 START ================= -->
+    <!-- It sits exactly on the join of the two pages, so half of it is on page 5 and half on page 6.
+         It is not part of either page. -->
+    <div class="seam" id="seam78">
+      <!-- ADD BLUE BORDER IMAGE (your blueborder.png, transparent PNG, shown 720 px wide) -->
+      <img loading="lazy" decoding="async" src="images/redline.png" alt="Border">
+    </div>
+    <!-- ================= BORDER BETWEEN PAGE 7 AND PAGE 8 END ================= -->
+
+    <!-- ================= PAGE 8 START : MANGAL VIVAH ================= -->
+    <section class="page vpage" id="page8">
+
+      <!-- ADD PAGE 8 BACKGROUND VIDEO (MP4, NO text on the video) -->
+      <video class="pv" data-src="videos/page8.mp4" data-poster="images/page8-poster.png" muted loop playsinline preload="none"></video>
+
+      <div class="text v-title t1" style="top:289px"><h2>Mangal Vivah</h2></div>
+      <div class="text v-date t2" style="top:375px"><p class="day">Friday</p><p>11<sup>th</sup> December 2026</p></div>
+      <div class="text v-info v-tight t3" style="top:453px"><p>Baraat Swagat<br>6:00 PM</p></div>
+      <div class="text v-info v-tight t4" style="top:524px"><p>Varmala<br>7:00 PM</p></div>
+      <div class="text v-info v-tight t5" style="top:611px"><p>Pheras<br>3:30 AM (Midnight)</p></div>
+      <div class="text v-info v-tight t6" style="top:700px"><p style="line-height:27px">Taj Amer Ground<br>Jaipur</p></div>
+
+    </section>
+    <!-- ================= PAGE 8 END ================= -->
+       <!-- ================= FANS ON PAGE 9 START ================= -->
+    <!-- A canopy of six fans hanging across the top of page 9, hiding the tops of the garlands.
+         Each fan: left / top / width = position and size (in page 9 coordinates, page width 720)
+                   --ox / --oy = the tip of the fan (it tilts around this point)
+                   --rot = tilt. Fans lean towards the middle so the canopy looks balanced. -->
+    <div class="fans9" id="fans9">
+      <div class="fans9-layer">
+
+        <!-- ADD FAN IMAGE (your fan1.png, used six times) -->
+        <!-- LEFT SIDE -->
+        <div class="fan" style="left:-127px; top:-49px;  width:277px; --ox:167px; --oy:14px; --rot:-17deg"><img loading="lazy" decoding="async" src="images/fan1.png" alt=""></div>
+        <div class="fan" style="left:51px;   top:-54px; width:181px; --ox:109px; --oy:9.1px; --rot:-17deg"><img loading="lazy" decoding="async" src="images/fan1.png" alt=""></div>
+        <div class="fan" style="left:191px;  top:-57px; width:125px; --ox:76px; --oy:6.4px; --rot:-17deg"><img loading="lazy" decoding="async" src="images/fan1.png" alt=""></div>
+
+        <!-- RIGHT SIDE (mirror of the left side: class "flip") -->
+        <div class="fan flip" style="left:404px;  top:-57px; width:125px; --ox:50px;  --oy:6.4px; --rot:17deg"><img loading="lazy" decoding="async" src="images/fan1.png" alt=""></div>
+        <div class="fan flip" style="left:488px;  top:-54px; width:181px; --ox:72px; --oy:9.1px; --rot:17deg"><img loading="lazy" decoding="async" src="images/fan1.png" alt=""></div>
+        <div class="fan flip" style="left:570px; top:-49px;  width:277px; --ox:110px; --oy:14px; --rot:17deg"><img loading="lazy" decoding="async" src="images/fan1.png" alt=""></div>
+
+      </div>
+    </div>
+    <!-- ================= FANS ON PAGE 9 END ================= -->
+
+    <!-- ================= PAGE 9 START : RECEPTION ================= -->
+    <section class="page vpage" id="page9">
+
+      <!-- ADD PAGE 9 BACKGROUND VIDEO (MP4, NO text on the video) -->
+      <video class="pv" data-src="videos/page9.mp4" data-poster="images/page9-poster.png" muted loop playsinline preload="none"></video>
+
+      <div class="text v-title t1" style="top:125px"><h2>Reception</h2></div>
+      <div class="text v-date t2" style="top:213px"><p class="day">Friday</p><p>11<sup>th</sup> December 2026</p></div>
+      <div class="text v-info t3" style="top:281px"><p>7:30 PM onwards</p></div>
+      <div class="text v-info t4" style="top:333px"><p>Taj Amer Ground Jaipur</p></div>
+
+    </section>
+    <!-- ================= PAGE 9 END ================= -->
+<!-- ================= BORDER BETWEEN PAGE 9 AND PAGE 10 START ================= -->
+    <!-- It sits exactly on the join of the two pages, so half of it is on page 5 and half on page 6.
+         It is not part of either page. -->
+    <div class="seam seam-circles" id="seam910">
+      <!-- ADD BLUE BORDER IMAGE (your blueborder.png, transparent PNG, shown 720 px wide) -->
+      <img loading="lazy" decoding="async" src="images/circles.png" alt="Border">
+    </div>
+    <!-- ================= BORDER BETWEEN PAGE 9 AND PAGE 10 END ================= -->
+
+    <!-- ================= PAGE 10 START : BLESSINGS (LAST PAGE) ================= -->
+    <section class="page vpage" id="page10">
+
+      <!-- ADD PAGE 10 BACKGROUND VIDEO (MP4, NO text on the video) -->
+      <video class="pv" data-src="videos/page10.mp4" data-poster="images/page10-poster.png" muted loop playsinline preload="none"></video>
+
+      <div class="text v-quote t1" style="top:245px"><h2>Your presence and blessings will make<br>our celebrations truly memorable</h2></div>
+      <div class="text v-info t2" style="top:354px"><p>With warm regards</p></div>
+      <div class="text v-info v-family t3" style="top:411px"><p>Shri Jawaharmalji Nagjiji Chandan Family</p></div>
+      <div class="text v-info t4" style="top:533px"><p>Dhaval Chandan<br>Pravin Chandan<br>Rajesh Chandan<br>Dilip Chandan</p></div>
+
+    </section>
+    <!-- ================= PAGE 10 END ================= -->
+
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

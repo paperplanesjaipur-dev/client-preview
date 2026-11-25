@@ -1,0 +1,582 @@
+/* =====================================================
+   STYLE.CSS : Disha & Sambhav wedding invitation
+   Website width = 720 px. Every number in this file is in pixels on that width.
+   Every page = 720 x 1280. Pages sit one under the other and scroll normally.
+   ===================================================== */
+
+
+/* =====================================================
+   PART A : BASE (never change this part)
+   ===================================================== */
+:root { --gold: #e9c987; --pink: #ff2d95; }
+* { box-sizing: border-box; margin: 0; }
+
+/* Colour shown on the sides when the screen is wider than the site (computers) */
+html { background: #8a3345; max-width: 100%; }
+body { position: relative; overflow-x: hidden; font-family: 'Cormorant Garamond', Georgia, serif; -webkit-tap-highlight-color: transparent; }
+
+/* The 720 px wide column. script.js shrinks it to fit the screen. */
+.phone {
+  position: absolute; left: 50%; top: 0;
+  width: 720px;
+  transform: translateX(-50%) scale(var(--s, .3));
+  transform-origin: top center;
+  overflow: hidden;      /* nothing may stick out of the 720 px column (the fans did), otherwise a phone zooms out and shows empty side space */
+}
+
+/* Every page = 720 x 1280, one under the other */
+.page {
+  position: relative; width: 720px; height: 1280px;
+  overflow: hidden; text-align: center; color: #f6e7d0; background: #333;
+}
+
+/* Full-page background image (720 x 1280) */
+.bg { position: absolute; left: 0; top: 0; width: 720px; height: 1280px; object-fit: cover; z-index: 0; }
+
+/* Every other image sits on top. Set left / top / width / height for each one. */
+.page img:not(.bg) { position: absolute; object-fit: contain; }
+
+
+/* =====================================================
+   PART B : TEXT STYLES (use these classes in any page)
+   ===================================================== */
+.text { position: absolute; left: 32px; right: 32px; transform: translateY(-50%); z-index: 5; text-shadow: 0 1.6px 13px rgba(0,0,0,.18); }
+
+/* Text fades up one by one when its page scrolls into view */
+.text > * { opacity: 0; transform: translateY(23px); transition: opacity .9s .3s, transform .9s .3s; }
+.page.active .text > * { opacity: 1; transform: none; }
+
+.text h2 { font: 400 69px/1.1 'Pinyon Script', cursive; color: var(--accent, var(--gold)); margin: 23px 0 6.4px; }  /* script heading */
+.text p  { text-transform: uppercase; letter-spacing: .1em; line-height: 1.7; font-size: 19px; font-weight: 500; }     /* normal line    */
+.text .big   { font-size: 48px; }                                                                                  /* large line     */
+.text .date  { font-size: 27px; font-weight: 600; margin: 16px 0 23px; }                                           /* date line      */
+.text .sub   { font-size: 18px; opacity: .85; margin-bottom: 9.6px; }                                               /* small bracket  */
+.text .small { font-size: 16px; margin: 9.6px 0 30px; }                                                             /* tiny text      */
+
+
+/* =====================================================
+   PART C : PINK GUIDES (delete when the site is finished)
+   ===================================================== */
+.guides .page img { outline: 3.2px dashed var(--pink); outline-offset: -3.2px; background: repeating-linear-gradient(45deg, rgba(255,45,149,.2) 0 16px, rgba(255,45,149,.07) 16px 32px); }
+.guides .pv, .guides #page4 .p4-video { outline: 3.2px dashed var(--pink); outline-offset: -3.2px; }
+#guideBtn { position: fixed; top: 10px; right: 10px; z-index: 9999; border: 0; border-radius: 999px; padding: 8px 14px; font: 600 13px system-ui, sans-serif; color: #fff; background: var(--pink); }
+
+
+/* =====================================================
+   PART D : PAGES (one block per page)
+   ===================================================== */
+
+
+/* ================= PAGE 1 START ================= */
+
+/* Fallback colour shown behind your background image */
+#page1 { background: linear-gradient(#fde0c4, #f8a98f 55%, #e8587a); }
+
+/* ---------- Flower branch ----------
+   ★ left / top = position on the page, width = size (height follows the picture)
+   If the branch does not touch the left edge, use a negative left, e.g. left: -21px;  */
+#page1 .p1-flowers { left: 0; top: 80px; width: 603px; height: auto; object-fit: fill; z-index: 1; }
+
+/* ---------- Flip card (holds Ganesha + logo in the same spot) ----------
+   ★ --card = size of the card. Ganesha and the logo both use this size.
+   The card is centered on the page automatically.  */
+#page1 .p1-card {
+  --card: 331px;                                    /* ★ CHANGE ONLY THIS NUMBER to resize */
+  --rot: 0deg;                                      /* turning angle, controlled by script.js */
+
+  position: absolute; left: 360px; top: 640px;     /* exact middle of the page */
+  width: var(--card); height: var(--card);
+  margin: calc(var(--card) / -2) 0 0 calc(var(--card) / -2);
+  z-index: 3; perspective: 960px; pointer-events: none; will-change: transform, opacity;
+
+  /* slow pop-up: starts small and invisible, grows to full size */
+  opacity: 0; transform: scale(.25);
+  transition: opacity 2.6s ease, transform 2.6s cubic-bezier(.16, .84, .3, 1);
+}
+#page1 .p1-card.show { opacity: 1; transform: scale(1); }
+
+/* The part that turns around (always turns the same direction). script.js turns it by itself every few seconds. */
+#page1 .p1-inner {
+  position: relative; width: 100%; height: 100%;
+  transform-style: preserve-3d; -webkit-transform-style: preserve-3d; will-change: transform;
+  transform: rotateY(var(--rot));
+  transition: transform 1.1s cubic-bezier(.45, .05, .25, 1);     /* ★ flip speed = 1.1s (the pause between flips is P1_FLIP_EVERY in script.js) */
+}
+
+/* Both pictures fill the card and sit exactly on top of each other, centered */
+#page1 .p1-face {
+  left: 0; top: 0; width: 100%; height: 100%;
+  object-fit: contain; object-position: center;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+}
+#page1 .p1-back { transform: rotateY(180deg); }
+
+/* ★ NUDGE (only if one picture sits off-centre inside its file)
+   Positive = move right / down, negative = move left / up. Leave at 0 if they already line up. */
+#page1 .p1-front { left: 0px; top: 0px; }     /* Ganesha */
+#page1 .p1-back  { left: 0px; top: 0px; }     /* Logo    */
+
+@media (prefers-reduced-motion: reduce) {
+  #page1 .p1-card, #page1 .p1-inner { transition-duration: .01s; }
+}
+
+/* ================= PAGE 1 END ================= */
+
+
+/* ================= PAGE 2 START ================= */
+
+/* Fallback colour shown behind your background image */
+#page2 { background: linear-gradient(#b4455a, #8a3345 60%, #5a2c2a); color: #f8e4cf; }
+
+/* Page 2 slides UP over the bottom of page 1 and fades in, so the two pages melt into each other (no hard line).
+   ★ --blend2 = how many px of overlap / fade. Bigger = softer. Page 2's text starts at about 208px, so keep it under ~190px. */
+#page2 {
+  --blend2: 140px;
+  margin-top: calc(var(--blend2) * -1);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 var(--blend2));
+  mask-image: linear-gradient(to bottom, transparent 0, #000 var(--blend2));
+}
+
+/* ---------- Text (all blocks) ---------- */
+#page2 .text p {
+  margin: 0; line-height: 27px; font-weight: 500; color: #f8e4cf;
+  text-transform: none; letter-spacing: 0;
+}
+
+/* Capital-letter lines (invitation line and WITH) */
+#page2 .p2-caps p { text-transform: uppercase; letter-spacing: .03em; font-size: 18px; }   /* ★ text size */
+
+/* Small-capital lines (family names) */
+#page2 .p2-sc p { font-variant: small-caps; font-size: 20px; }                              /* ★ text size */
+
+/* Names in gold script */
+#page2 .p2-name h2 { font: 400 69px/1 'Pinyon Script', cursive; margin: 0; color: #e9c987; }   /* ★ name size */
+
+/* Order the texts appear one after another (seconds) */
+#page2 .t1 > * { transition-delay: .6s; }
+#page2 .t2 > * { transition-delay: 1.1s; }
+#page2 .t3 > * { transition-delay: 1.6s; }
+#page2 .t4 > * { transition-delay: 2.1s; }
+#page2 .t5 > * { transition-delay: 2.5s; }
+#page2 .t6 > * { transition-delay: 3s; }
+
+/* ================= PAGE 2 END ================= */
+
+
+/* ================= PAGE 3 START ================= */
+
+/* Page 3 slides UP over the bottom of page 2, so page 2 and page 3 show ONE joined haveli.
+   ★ -453px = how much page 3 overlaps page 2.
+   More negative (e.g. -533px) = the roof appears higher on page 2. Less negative (e.g. -373px) = lower.
+   isolation keeps page 4 inside page 3, so page 5 can blend over the bottom of it. */
+#page3 { margin-top: -453px; background: transparent; isolation: isolate; }
+
+/* Gold glow, shown only while we walk through the door */
+#page3::before {
+  content: ''; position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0;
+  background: radial-gradient(ellipse at 50% 84%, rgba(255,214,150,.95) 0%, rgba(214,140,70,.6) 38%, rgba(70,32,16,.0) 78%);
+}
+#page3.go-in::before { animation: p3Bloom 2.6s ease-in-out forwards; }
+@keyframes p3Bloom { 0% { opacity: 0; } 45% { opacity: 1; } 100% { opacity: 0; } }
+
+/* Solid brown layer behind everything while the Welcome Lunch view is open
+   (stops page 2 showing through while the views fade into each other) */
+#page3::after {
+  content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: #7d4526;                                   /* ★ change this colour if you like */
+  opacity: 0; transition: opacity .8s ease 1.6s;
+}
+#page3.lunch-on::after { opacity: 1; transition-delay: 0s; }
+
+/* ---------- Haveli view ---------- */
+#page3 .p3-world {
+  position: absolute; left: 0; top: 0; width: 720px; height: 1280px; z-index: 1;
+  transform-origin: 360px 528px;                         /* centre of the window (for zoom in) */
+  transition: transform 1.4s cubic-bezier(.65, 0, .25, 1), opacity 1s ease .4s;
+}
+
+/* The world gets its own GPU layer while page 3 is on screen, so zooming it is smooth and does not re-draw the picture every frame */
+#page3.active .p3-world { will-change: transform, opacity; }
+
+/* Soft fade at the very top, so the sky blends into page 2 with no hard line */
+#page3 .p3-world .bg { -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 139px); mask-image: linear-gradient(to bottom, transparent 0, #000 139px); }
+
+/* ---------- Haveli (sits on top of the background image) ---------- */
+#page3 .p3-haveli {
+  left: 0; top: 0; width: 720px; height: 1280px; z-index: 1;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 64px); mask-image: linear-gradient(to bottom, transparent 0, #000 64px);
+}
+
+/* ---------- DOOR: both door images are FULL-PAGE layers (720 x 1280), like the haveli image.
+   ★ --hinge-l / --hinge-r = where the left and right door edges are (the doors swing around these)
+   ★ --door-top / --door-h = top and height of the glowing doorway behind the doors  */
+#page3 .p3-door {
+  --hinge-l: 307px;                                      /* ★ left edge of the door  */
+  --hinge-r: 418px;                                      /* ★ right edge of the door */
+  --door-top: 1005px;                                    /* ★ top of the doorway     */
+  --door-h: 141px;                                       /* ★ height of the doorway  */
+  position: absolute; left: 0; top: 0; width: 720px; height: 1280px; z-index: 2;
+  pointer-events: none;
+}
+
+/* Glow behind the doors: hidden while closed, fades in when the doors open. Tap it to open the doors. */
+#page3 .p3-door::before {
+  content: ''; position: absolute; left: var(--hinge-l); top: var(--door-top);
+  width: calc(var(--hinge-r) - var(--hinge-l)); height: var(--door-h);
+  border-radius: 50% 50% 0 0 / 20% 20% 0 0;
+  background: radial-gradient(ellipse at 50% 60%, #ffd98a 0%, #c9772c 55%, #5a2a12 100%);
+  box-shadow: 0 0 48px 19px rgba(255, 200, 110, .75);     /* warm light (fixed, only the opacity changes, so it is cheap) */
+  opacity: 0;
+  pointer-events: auto; cursor: pointer;
+  transition: opacity .5s ease;
+}
+
+/* Each leaf is a full-page layer that swings around its hinge */
+#page3 .p3-leaf {
+  position: absolute; left: 0; top: 0; width: 720px; height: 1280px;
+  transform: scaleX(1);
+  transition: transform 1.2s cubic-bezier(.5, 0, .2, 1);          /* ★ door opening speed (1.2 s) */
+}
+#page3.active .p3-leaf { will-change: transform; }
+#page3 .p3-left  { transform-origin: var(--hinge-l) 50%; }
+#page3 .p3-right { transform-origin: var(--hinge-r) 50%; }
+#page3 .p3-leaf img { position: absolute; left: 0; top: 0; width: 720px; height: 1280px; object-fit: fill; max-width: none; }
+
+/* ---------- Border + musicians (they use the REAL size of your image files)
+   ★ --k = size multiplier: 1 = real size, 1.5 = one and a half times bigger
+   ★ left / bottom = where the picture stands (bottom = distance from the bottom of the page)  */
+#page3 .p3-border { left: 0; bottom: 0; top: auto; width: 720px; height: auto; z-index: 4; }
+
+#page3 .p3-musicians {
+  --k: .7;  /* ★ size: 1 = real size of the picture file, smaller number = smaller musicians */
+  left: 360px; top: auto; bottom: 6px;       /* ★ bottom = how high they stand (smaller number = lower) */ width: auto; height: auto; max-width: none; z-index: 5;
+  transform: translateX(-50%) scale(var(--k)); transform-origin: 50% 100%;
+  pointer-events: none; transition: opacity .9s ease;
+}
+
+/* ---------- Texts 1 and 2 (they swap every 3 seconds) ---------- */
+#page3 .p3-msg {
+  position: absolute; left: 0; top: 773px; width: 720px; height: 0; z-index: 6;   /* ★ top = centre of the text */
+  opacity: 0; transform: translateY(11px); will-change: opacity, transform;
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+#page3 .p3-msg.show { opacity: 1; transform: none; }
+#page3 .p3-msg p {
+  position: absolute; left: 0; width: 720px; text-align: center; line-height: 1; margin: 0;
+  transform: translateY(-50%); color: #f3e3c3; text-shadow: 0 1.1px 9.6px rgba(40,18,8,.45);
+  font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; font-variant-numeric: lining-nums;
+  text-transform: uppercase;
+}
+#page3 .p3-a { font-size: 58px; }                                              /* 9th – 12th */
+#page3 .p3-a sup { font-size: .45em; vertical-align: top; position: relative; top: .05em; text-transform: lowercase; }
+#page3 .p3-b { font-size: 32px; letter-spacing: .05em; }                        /* December, Fairmont, Taj Amer */
+#page3 .p3-c { font-size: 42px; }                                               /* 2026 */
+#page3 .p3-d { font-size: 30px; letter-spacing: .14em; color: #d3b57a; }        /* Jaipur */
+#page3 .p3-msg p.p3-script { font: 400 48px/1 'Pinyon Script', cursive; text-transform: none; }   /* at */
+#page3 .p3-msg p.p3-amp { font-size: 64px; }                                   /* & */
+
+/* ---------- Tags ---------- */
+#page3 .p3-tag {
+  position: absolute; z-index: 8; transform: translate(-50%, -50%);
+  display: flex; align-items: center; gap: 8.5px; padding: 9.6px 20px 9.6px 15px; border-radius: 533px;
+  font: 600 17px/1 'Cormorant Garamond', Georgia, serif; letter-spacing: .14em; text-transform: uppercase; color: #f6e2ae;
+  background: linear-gradient(rgba(70,34,18,.86), rgba(44,20,10,.86));
+  border: 1.6px solid rgba(233,201,135,.9);
+  box-shadow: 0 0 0 3.2px rgba(233,201,135,.18), 0 5.3px 18px rgba(0,0,0,.45);
+  cursor: pointer; opacity: 0; pointer-events: none; white-space: nowrap;
+  transition: opacity .9s ease;
+}
+#page3 .p3-tag svg { width: 21px; height: 21px; flex: none; }
+/* Door tag has a longer text: it wraps into two centred lines */
+#page3 #p3DoorTag { white-space: normal; max-width: 410px; text-align: center; line-height: 1.25; border-radius: 40px; }
+#page3 #p3DoorTag::after { border-radius: 44px; }
+/* The pulsing ring (it only changes size and opacity, so the phone does not have to re-draw it) */
+#page3 .p3-tag::after {
+  content: ''; position: absolute; inset: -4.8px; border-radius: 533px; pointer-events: none;
+  border: 3.2px solid rgba(233,201,135,.4);
+  animation: p3Pulse 2.4s ease-in-out infinite; animation-play-state: paused;
+}
+#page3.active .p3-tag::after { animation-play-state: running; }
+@keyframes p3Pulse { 0% { transform: scale(.96); opacity: .9; } 70%, 100% { transform: scale(1.14); opacity: 0; } }
+
+/* ★ tag positions (left / top = centre of the tag) and the order they appear */
+#page3 #p3ZoomTag { left: 360px; top: 602px; transition-delay: 1.6s; }
+#page3 #p3DoorTag { left: 360px; top: 909px; transition-delay: 2.4s; }
+#page3 #p3OutTag  { left: 360px; top: 1147px; }
+#page3.active .p3-world .p3-tag { opacity: 1; pointer-events: auto; }
+
+/* ---------- Welcome Lunch view ---------- */
+#page3 .p3-lunch {
+  position: absolute; left: 0; top: 0; width: 720px; height: 1280px; z-index: 9; cursor: pointer;
+  opacity: 0; transform: scale(.86); pointer-events: none;
+  transition: opacity 1s ease, transform 1.4s cubic-bezier(.2, .7, .2, 1);
+}
+#page3 .p3-lt {
+  position: absolute; left: 0; width: 720px; text-align: center; line-height: 1; margin: 0;
+  opacity: 0; transform: translateY(21px); transition: opacity .9s ease, transform .9s ease;
+}
+#page3 .p3-l1 { padding: 0 .1em .3em; top: 867px; font: 400 80px/1 'Pinyon Script', cursive;                      /* ★ title size */
+  background: linear-gradient(#f6e2a8, #d9b46a 60%, #f1d796); -webkit-background-clip: text; background-clip: text; color: transparent; }
+#page3 .p3-l2, #page3 .p3-l3 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; font-variant-numeric: lining-nums; text-transform: uppercase; color: #e6c9b4; letter-spacing: .03em; }
+#page3 .p3-l2 { top: 974px; font-size: 30px; }
+#page3 .p3-l2 sup { font-size: .5em; vertical-align: top; position: relative; top: -.05em; }
+#page3 .p3-l3 { top: 1034px; font-size: 23px; }
+
+/* ---------- STATE: window zoomed in (Welcome Lunch showing) ---------- */
+#page3.lunch-on .p3-world { transform: translate(0, -111px) scale(2.8); opacity: 0; pointer-events: none; }
+#page3.lunch-on .p3-lunch { opacity: 1; transform: none; pointer-events: auto; transition-delay: .45s; }
+#page3.lunch-on .p3-lt { opacity: 1; transform: none; }
+#page3.lunch-on .p3-l1 { transition-delay: 1s; }
+#page3.lunch-on .p3-l2 { transition-delay: 1.5s; }
+#page3.lunch-on .p3-l3 { transition-delay: 2s; }
+#page3.lunch-on .p3-lunch .p3-tag { opacity: 1; pointer-events: auto; transition-delay: 2.4s; }
+
+/* ---------- STATE: door opening, then we go inside ---------- */
+#page3.door-open .p3-left  { transform: scaleX(.08); }
+#page3.door-open .p3-right { transform: scaleX(.08); }
+#page3.door-open .p3-musicians { opacity: 0; }
+#page3.door-open .p3-msg { opacity: 0; pointer-events: none; transition: opacity .5s ease; }
+#page3.door-open #p3ZoomTag, #page3.door-open #p3DoorTag { opacity: 0; pointer-events: none; transition: opacity .4s ease 0s; }
+#page3.door-open .p3-door::before { opacity: 1; }   /* warm light spills out */
+#page3.door-open .p3-tag::after { animation-play-state: paused; }
+
+/* Then we walk in (zoom into the doorway) */
+#page3.go-in .p3-world {
+  transform-origin: 361px 1080px;
+  transform: scale(1.35);               /* ★ slow, small push towards the doorway (1 = none, 1.35 = gentle) */
+  transition: transform 3s cubic-bezier(.3, 0, .2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) { #page3 .p3-tag::after { animation: none; } }
+
+/* ================= PAGE 3 END ================= */
+
+
+/* ================= PAGE 4 START ================= */
+
+/* Page 4 sits on top of page 3. It is hidden until the door opens, then it grows out of the doorway.
+   ★ transform-origin = the centre of the door (where page 4 grows from) */
+#page4 {
+  position: absolute; left: 0; top: 0; width: 720px; height: 1280px; z-index: 20; overflow: hidden;
+  background: linear-gradient(#5a3320, #8a4a30 45%, #5a3320);
+  transform-origin: 50% 62%;
+  transform: scale(1.06); opacity: 0; visibility: hidden; pointer-events: none;
+}
+#page3.p4-in #page4 {
+  transform: none; opacity: 1; visibility: visible; pointer-events: auto;
+  transition: transform 2.4s cubic-bezier(.2, .6, .2, 1), opacity 1.6s ease-in-out;      /* ★ page 4 fading in and settling (2.4 s) */
+}
+/* Page 4 gets its own GPU layer from the moment the door starts to open, so it can grow smoothly */
+#page3.door-open #page4 { will-change: transform, opacity; }
+
+/* ---------- Background video: a little bigger than the page, so black edge lines are cropped off ---------- */
+#page4 .p4-video {
+  position: absolute; left: -8.5px; top: -15px; width: 737px; height: 1310px;
+  object-fit: cover; background: #5a3320; z-index: 0;
+}
+
+/* ---------- Text (all blocks) ---------- */
+#page4 .text p { margin: 0; color: #fff; text-transform: uppercase; letter-spacing: .02em; text-shadow: 0 1.1px 8.5px rgba(30,12,6,.45); }
+#page3.p4-in #page4 .text > * { opacity: 1; transform: none; }      /* texts appear when page 4 opens */
+
+/* Title in gold script */
+#page4 .p4-title h2 {
+  font: 400 74px/1 'Pinyon Script', cursive; margin: 0;                       /* ★ title size */
+  background: linear-gradient(#f6e2a8, #d9b46a 60%, #f1d796);
+  -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: none;
+}
+
+#page4 .p4-title h2 { padding: .08em .12em .32em; margin: -.08em -.12em -.32em; }
+
+/* (Sajjan Kot) in gold small capitals */
+#page4 .p4-sub p { font-variant: small-caps; text-transform: none; font-size: 21px; font-weight: 600; letter-spacing: .05em; color: #d9b46a; }   /* ★ size */
+
+/* Date */
+#page4 .p4-date p { font-size: 30px; font-weight: 600; font-variant-numeric: lining-nums; }                                                      /* ★ size */
+#page4 .p4-date sup { font-size: .5em; vertical-align: top; position: relative; top: -.1em; }
+
+/* Time and venue lines */
+#page4 .p4-lines p { font-size: 25px; line-height: 31px; font-weight: 600; font-variant-numeric: lining-nums; }                                   /* ★ size and line gap */
+
+/* Order the texts appear one after another (seconds, counted from when page 4 starts fading in) */
+#page4 .t1 > * { transition-delay: 1.4s; }
+#page4 .t2 > * { transition-delay: 2s; }
+#page4 .t3 > * { transition-delay: 2.6s; }
+#page4 .t4 > * { transition-delay: 3.2s; }
+
+/* ================= PAGE 4 END ================= */
+
+
+/* =====================================================
+   PAGES 5 - 10 : video background + text, they scroll one after another
+   ===================================================== */
+
+/* ★ --blend = how much each page overlaps the one above and fades into it (no hard line). Use 0px for no blend. */
+:root { --blend: 53px; }
+
+.vpage { margin-top: calc(var(--blend) * -1); background: transparent; }
+
+/* Soft fade at the top of each video page, so it melts into the page above (no hard line).
+   - Computers: always on.
+   - Phones: a fade on a playing video is heavy, so script.js switches it on (class "edge") only while the top of the page
+     is near the screen, and switches it off again when you are in the middle of the page. The picture looks the same as on a computer. */
+@media (hover: hover) and (pointer: fine) {
+  .vpage {
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 var(--blend));
+    mask-image: linear-gradient(to bottom, transparent 0, #000 var(--blend));
+  }
+}
+@media (hover: none), (pointer: coarse) {
+  .vpage.edge {
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 var(--blend));
+    mask-image: linear-gradient(to bottom, transparent 0, #000 var(--blend));
+  }
+  /* Pages far from the screen are not drawn at all (saves phone memory). Size stays 720 x 1280, so nothing moves. */
+  .vpage { content-visibility: auto; contain-intrinsic-size: 720px 1280px; }
+}
+
+/* Invisible marker at the top of each video page (script.js watches it to know when the seam is near) */
+.edge-probe { position: absolute; left: 0; top: 0; width: 720px; height: 80px; pointer-events: none; }
+
+/* Colour shown behind the video until it loads (changes per page, see below) */
+.vpage::before { content: ''; position: absolute; inset: 0; z-index: 0; background: var(--pimg, none) center / 100% 100% no-repeat, var(--fb, #333); }   /* --pimg = the page's still picture, set by script.js */
+
+/* Video: a little bigger than the page, so black edge lines in the file are cropped off.
+   More cropping: left -16px, top -27px, width 752px, height 1333px */
+.vpage .pv { position: absolute; left: -8.5px; top: -15px; width: 737px; height: 1310px; object-fit: cover; z-index: 0; }
+
+/* All text on these pages */
+.vpage .text p {
+  margin: 0; color: var(--c, #fff); text-transform: uppercase; letter-spacing: .02em; text-shadow: none;
+  font-size: 28px; line-height: 32px; font-weight: 600; font-variant-numeric: lining-nums;           /* ★ normal text size */
+}
+.vpage sup { font-size: .5em; vertical-align: top; position: relative; top: -.1em; }
+
+/* Title in script (colour = --t, size = --ts) */
+.vpage .v-title h2 { font: 400 var(--ts, 69px)/1 'Pinyon Script', cursive; margin: 0; color: var(--t, #fff); }
+.vpage .gold h2 {
+  background: linear-gradient(#f6e2a8, #d9b46a 60%, #f1d796);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+/* Gold gradient text is clipped to its box, so the tails of letters like g were cut off.
+   The padding gives the letters room, the negative margin keeps the position exactly where it was. */
+.vpage .v-title h2 { padding: .08em .12em .32em; margin: -.08em -.12em -.32em; }
+
+/* Small bracket under the title, for example (Haldi) */
+.vpage .v-sub p { font-variant: small-caps; text-transform: none; font-size: 21px; letter-spacing: .05em; color: var(--t, #fff); }
+
+/* Day + date */
+.vpage .v-date p { font-size: 35px; line-height: 32px; }                    /* ★ date size */
+.vpage .v-date .day { font-size: 25px; }                                    /* ★ day size  */
+
+/* Tighter lines (Mangal Vivah) */
+.vpage .v-tight p { font-size: 25px; line-height: 21px; }
+
+/* Blessing quote (page 10) */
+.vpage .v-quote h2 { font: 400 38px/44px 'Pinyon Script', cursive; margin: 0; color: #fff; }   /* ★ quote size */
+.vpage .v-family p { font-size: 26px; }                                                         /* ★ family line size */
+
+/* Order the texts appear one after another (seconds) */
+.vpage .t1 > * { transition-delay: .5s; }
+.vpage .t2 > * { transition-delay: 1.1s; }
+.vpage .t3 > * { transition-delay: 1.7s; }
+.vpage .t4 > * { transition-delay: 2.3s; }
+.vpage .t5 > * { transition-delay: 2.9s; }
+.vpage .t6 > * { transition-delay: 3.5s; }
+
+/* ---------- PAGE 5 : Artisans Court ---------- */
+#page5 { --fb: linear-gradient(#b86d72, #9a5560); --t: #6e2230; --c: #fbeed5; --ts: 64px; }       /* ★ --ts = title size */
+#page5 .v-info:last-child p { line-height: 31px; }
+
+/* ---------- PAGE 6 : Sangeet ---------- */
+#page6 { --fb: linear-gradient(#3a5d8a, #1b3b57); --c: #fff; --ts: 80px; }
+#page6 .v-info p { line-height: 35px; }
+
+/* ---------- PAGE 7 : Mayra & Carnival ---------- */
+#page7 { --fb: linear-gradient(#f6a98a, #e8735e); --t: #6a1f2a; --c: #5a1a28; --ts: 80px; }
+#page7 .v-info p { line-height: 34px; }
+
+/* ---------- PAGE 8 : Mangal Vivah ---------- */
+#page8 { --fb: linear-gradient(#f8788a, #f39aa0); --t: #1f2a24; --c: #1f2a24; --ts: 72px; }
+#page8 .v-date p { font-size: 33px; line-height: 30px; }
+#page8 .v-date .day { font-size: 22px; }
+
+/* ---------- PAGE 9 : Reception ---------- */
+#page9 { --fb: linear-gradient(#f7d6c6, #e6a994); --t: #6b1f2a; --c: #5e2230; --ts: 70px; }
+#page9 .v-date p { font-size: 25px; line-height: 15px; }
+#page9 .v-date .day { font-size: 17px; }
+
+/* ---------- PAGE 10 : Blessings ---------- */
+#page10 { --fb: linear-gradient(#d9235f, #9a2a44); --c: #fff; }
+
+/* ================= PAGES 5 - 10 END ================= */
+/* =====================================================
+   BORDER BETWEEN PAGE 5 AND PAGE 6
+   ===================================================== */
+
+/* The border is centred on the join of the two pages.
+   ★ --seam-y = moves it up (negative) or down (positive). Starting value -27px = the middle of the blend zone.
+   ★ width    = size of the border. 720px = full page width (height follows the picture, about 92px). */
+.seam { position: relative; height: 0; z-index: 30; pointer-events: none; }
+.seam img {
+  --seam-y: -27px;
+  position: absolute; left: 0; top: var(--seam-y);
+  width: 720px; height: auto; max-width: none;
+  transform: translateY(-50%);
+}
+/* Circles between page 9 and page 10: moved DOWN so the fountain is visible.
+   ★ --seam-y = more positive = lower. Was -27px. If the circles touch the blessing text, use a smaller number (e.g. 40px). */
+.seam.seam-circles img { --seam-y: 30px; }
+.guides .seam img { outline: 3.2px dashed var(--pink); outline-offset: -3.2px; }
+
+/* =====================================================
+   FANS ON PAGE 9 (a canopy that hides the top of the garlands)
+   ===================================================== */
+
+/* The canopy sits in front of the top of page 9. It is not part of the page, so the blend never fades it.
+   ★ --fans-shift = moves the whole canopy down (positive) or up (negative).
+     Start at 0px. If the fan tips cover too much of the bottom of page 8, try 16px. */
+.fans9 { --fans-shift: 0px; position: relative; height: 0; z-index: 30; pointer-events: none; }
+
+/* This box starts exactly at the top of page 9 (it follows --blend automatically) */
+.fans9-layer { position: absolute; left: 0; top: calc(var(--blend) * -1 + var(--fans-shift)); width: 720px; height: 0; }
+
+/* Each fan tilts around its tip (--ox, --oy) by --rot */
+.fans9 .fan { position: absolute; transform-origin: var(--ox) var(--oy); transform: rotate(var(--rot)); }
+.fans9 .fan img { display: block; width: 100%; height: auto; max-width: none; }
+.fans9 .fan.flip img { transform: scaleX(-1); }         /* right side = mirror of the left side */
+
+.guides .fans9 img { outline: 2.1px dashed var(--pink); outline-offset: -2.1px; }
+
+/* =====================================================
+   BLUE CURTAIN BETWEEN PAGE 5 AND PAGE 6
+   ===================================================== */
+
+/* Clipping box: centred on the join of the two pages, exactly 720 px wide,
+   so the curtain never sticks out on the sides on a computer screen. */
+.seam-curtain .curtain-clip {
+  --curtain-w: 1200px;   /* ★ size of the curtain image (bigger number = bigger curtain) */
+  --curtain-x: -200px;    /* ★ moves it left (negative) / right (positive). The flat left edge of the cloth must stay off-screen. */
+  --curtain-y: -350px;   /* ★ moves it up (negative) / down (positive) */
+
+  position: absolute; left: 0; top: -267px;
+  width: 720px; height: 533px;
+  overflow: hidden;
+  transform: translateY(-27px);        /* same centre as the blend zone between the pages */
+  pointer-events: none;
+}
+.seam-curtain .curtain-clip img {
+  position: absolute;
+  left: var(--curtain-x); top: calc(267px + var(--curtain-y));
+  width: var(--curtain-w); height: auto; max-width: none;
+  transform: none;                      /* cancels the generic .seam img centring */
+}
+.guides .seam-curtain .curtain-clip { outline: 3.2px dashed var(--pink); outline-offset: -3.2px; }
+
+/* =====================================================
+   PHONES : lighter effects
+   ===================================================== */
+@media (max-width: 900px) {
+  .text { text-shadow: 0 1px 5px rgba(0,0,0,.18); }
+}
